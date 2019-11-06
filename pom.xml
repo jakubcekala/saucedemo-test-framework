@@ -11,8 +11,6 @@
     <modules>
         <module>framework</module>
         <module>page-objects</module>
-        <module>page-objects</module>
-        <module>page-objects</module>
         <module>regression-tests</module>
         <module>domain</module>
     </modules>
