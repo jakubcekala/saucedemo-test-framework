@@ -13,6 +13,5 @@ public class Tests {
     public void test() {
         driverManager = DriverManagerFactory.getDriverManger(DriverType.CHROME);
         driver = driverManager.getWebDriver();
-
     }
 }
