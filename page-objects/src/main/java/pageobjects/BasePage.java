@@ -12,10 +12,10 @@ public class BasePage {
 
     BasePage(WebDriver driver) {
         this.driver = driver;
-        initWebElements();
+        findWebElements();
     }
 
-    private void initWebElements() {
+    private void findWebElements() {
         usernameForm = driver.findElement(By.id("user-name"));
         passwordForm = driver.findElement(By.id("password"));
     }
