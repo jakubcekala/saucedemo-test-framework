@@ -2,16 +2,21 @@ import driver.DriverManager;
 import driver.DriverManagerFactory;
 import driver.DriverType;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Tests {
 
-    private DriverManager driverManager;
     private WebDriver driver;
+
+    @BeforeTest
+    public void setEnv(){
+        DriverManager driverManager = DriverManagerFactory.getDriverManger(DriverType.CHROME);
+        driver = driverManager.getWebDriver();
+    }
 
     @Test
     public void test() {
-        driverManager = DriverManagerFactory.getDriverManger(DriverType.CHROME);
-        driver = driverManager.getWebDriver();
+
     }
 }
