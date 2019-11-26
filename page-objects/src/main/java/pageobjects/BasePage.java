@@ -10,7 +10,7 @@ public class BasePage {
     private WebElement usernameForm;
     private WebElement passwordForm;
 
-    BasePage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         findWebElements();
     }
@@ -20,15 +20,15 @@ public class BasePage {
         passwordForm = driver.findElement(By.id("password"));
     }
 
-    void enterUsername(String username) {
+    public void enterUsername(String username) {
         usernameForm.sendKeys(username);
     }
 
-    void enterPassword(String password) {
+    public void enterPassword(String password) {
         passwordForm.sendKeys(password);
     }
 
-    void enterUsernameAndPassword(String username, String password) {
+    public void enterUsernameAndPassword(String username, String password) {
         enterUsername(username);
         enterPassword(password);
     }
