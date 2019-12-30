@@ -1,24 +1,18 @@
 package pageobjects;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 public class BasePage {
 
-    private WebDriver driver;
-
+    @FindBy(how = How.XPATH, using = "//*[@id=\"user-name\"]")
     private WebElement usernameForm;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"password\"]")
     private WebElement passwordForm;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        findWebElements();
-    }
-
-    private void findWebElements() {
-        usernameForm = driver.findElement(By.id("user-name"));
-        passwordForm = driver.findElement(By.id("password"));
-    }
+    @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/input[3]")
+    private WebElement loginButton;
 
     public void enterUsername(String username) {
         usernameForm.sendKeys(username);
@@ -31,5 +25,9 @@ public class BasePage {
     public void enterUsernameAndPassword(String username, String password) {
         enterUsername(username);
         enterPassword(password);
+    }
+
+    public void clickOnLoginButton() {
+        loginButton.click();
     }
 }

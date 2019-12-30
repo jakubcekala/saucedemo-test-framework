@@ -2,6 +2,8 @@ import driver.DriverManager;
 import driver.DriverManagerFactory;
 import driver.DriverType;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageobjects.BasePage;
@@ -19,8 +21,14 @@ public class Tests {
 
     @Test
     public void test() {
-        BasePage basePage = new BasePage(driver);
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
         basePage.enterUsername("Test");
         basePage.enterPassword("Test");
+        basePage.clickOnLoginButton();
+    }
+
+    @AfterTest
+    public void endTest() {
+        driver.quit();
     }
 }
