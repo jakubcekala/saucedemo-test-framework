@@ -14,6 +14,15 @@ public class BasePage {
     @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/input[3]")
     private WebElement loginButton;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/h3/button")
+    private WebElement errorButton;
+
+    @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/h3")
+    private WebElement errorArea;
+
+    @FindBy(how = How.XPATH, using = "/html/body/div[1]")
+    private WebElement loginLogo;
+
     public void enterUsername(String username) {
         usernameForm.sendKeys(username);
     }
@@ -29,5 +38,15 @@ public class BasePage {
 
     public void clickOnLoginButton() {
         loginButton.click();
+    }
+
+    public void loginErrorIsVisible(String errorText) {
+        errorArea.isDisplayed();
+        errorArea.getText().equals(errorText);
+    }
+
+    public void login(String username, String password) {
+        enterUsernameAndPassword(username, password);
+        clickOnLoginButton();
     }
 }
