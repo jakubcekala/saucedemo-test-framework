@@ -2,6 +2,8 @@ package pageobjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.testng.Assert;
+import org.testng.asserts.Assertion;
 
 public class BasePage {
 
@@ -42,7 +44,7 @@ public class BasePage {
 
     public void loginErrorIsVisible(String errorText) {
         errorArea.isDisplayed();
-        errorArea.getText().equals(errorText);
+        Assert.assertEquals(errorText, errorArea.getText());
     }
 
     public void login(String username, String password) {

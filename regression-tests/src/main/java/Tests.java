@@ -1,34 +1,76 @@
 import driver.DriverManager;
 import driver.DriverManagerFactory;
 import driver.DriverType;
+import errors.LoginErrorTexts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageobjects.BasePage;
 
 public class Tests {
 
     private WebDriver driver;
 
-    @BeforeTest
-    public void setEnv(){
+    @BeforeMethod
+    public void setEnv() {
         DriverManager driverManager = DriverManagerFactory.getDriverManger(DriverType.CHROME);
         driver = driverManager.getWebDriver();
         driver.get("https://www.saucedemo.com/");
     }
 
     @Test
-    public void test() {
+    public void usernameRequiredTest() {
         BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.enterUsername("Test");
-        basePage.enterPassword("Test");
         basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.USERNAME_REQUIRED_ERROR);
+        basePage.enterPassword(Credentials.CORRECT_PASSWORD);
+        basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.USERNAME_REQUIRED_ERROR);
     }
 
-    @AfterTest
-    public void endTest() {
+    @Test
+    public void passwordRequiredTest() {
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+        basePage.enterUsername(Credentials.STANDARD_USER);
+        basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.PASSWORD_REQUIRED_ERROR);
+    }
+
+    @Test
+    public void credentialsNotMatchTest() {
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+        basePage.enterUsernameAndPassword(Credentials.NOT_EXISTING_USER, Credentials.INCORRECT_PASSWORD);
+        basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
+    }
+
+    @Test
+    public void incorrectPasswordTest() {
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+        basePage.enterUsernameAndPassword(Credentials.STANDARD_USER, Credentials.INCORRECT_PASSWORD);
+        basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
+    }
+
+    @Test
+    public void incorrectUsernameTest() {
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+        basePage.enterUsernameAndPassword(Credentials.NOT_EXISTING_USER, Credentials.CORRECT_PASSWORD);
+        basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
+    }
+
+    @Test
+    public void userLockedOutTest() {
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+        basePage.enterUsernameAndPassword(Credentials.LOCKED_OUT_USER, Credentials.CORRECT_PASSWORD);
+        basePage.clickOnLoginButton();
+        basePage.loginErrorIsVisible(LoginErrorTexts.LOCKED_USER_ERROR);
+    }
+
+    @AfterMethod
+    public void quitDriver() {
         driver.quit();
+        driver = null;
     }
 }
