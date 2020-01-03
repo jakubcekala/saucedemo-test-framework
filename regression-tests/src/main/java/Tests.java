@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
 import pageobjects.BasePage;
+import pageobjects.MainPage;
 
 public class Tests {
 
@@ -66,6 +67,12 @@ public class Tests {
         basePage.enterUsernameAndPassword(Credentials.LOCKED_OUT_USER, Credentials.CORRECT_PASSWORD);
         basePage.clickOnLoginButton();
         basePage.loginErrorIsVisible(LoginErrorTexts.LOCKED_USER_ERROR);
+    }
+
+    @Test
+    public void loginTest() {
+        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
+        MainPage mainPage = basePage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
     }
 
     @AfterMethod

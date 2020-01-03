@@ -1,9 +1,10 @@
 package pageobjects;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.asserts.Assertion;
 
 public class BasePage {
 
@@ -47,8 +48,9 @@ public class BasePage {
         Assert.assertEquals(errorText, errorArea.getText());
     }
 
-    public void login(String username, String password) {
+    public MainPage login(String username, String password, WebDriver driver) {
         enterUsernameAndPassword(username, password);
         clickOnLoginButton();
+        return PageFactory.initElements(driver, MainPage.class);
     }
 }
