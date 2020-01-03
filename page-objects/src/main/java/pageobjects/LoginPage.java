@@ -5,25 +5,26 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import xpaths.LoginPageXPaths;
 
 public class LoginPage {
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"user-name\"]")
+    @FindBy(how = How.XPATH, using = LoginPageXPaths.USERNAME_FORM_XPATH)
     private WebElement usernameForm;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"password\"]")
+    @FindBy(how = How.XPATH, using = LoginPageXPaths.PASSWORD_FORM_XPATH)
     private WebElement passwordForm;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/input[3]")
+    @FindBy(how = How.XPATH, using = LoginPageXPaths.LOGIN_BUTTON_XPATH)
     private WebElement loginButton;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/h3/button")
+    @FindBy(how = How.XPATH, using = LoginPageXPaths.ERROR_BUTTON_XPATH)
     private WebElement errorButton;
 
-    @FindBy(how = How.XPATH, using = "//*[@id=\"login_button_container\"]/div/form/h3")
+    @FindBy(how = How.XPATH, using = LoginPageXPaths.ERROR_AREA_XPATH)
     private WebElement errorArea;
 
-    @FindBy(how = How.XPATH, using = "/html/body/div[1]")
+    @FindBy(how = How.XPATH, using = LoginPageXPaths.LOGIN_LOGO_XPATH)
     private WebElement loginLogo;
 
     public void enterUsername(String username) {
