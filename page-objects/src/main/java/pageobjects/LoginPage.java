@@ -6,7 +6,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class BasePage {
+public class LoginPage {
 
     @FindBy(how = How.XPATH, using = "//*[@id=\"user-name\"]")
     private WebElement usernameForm;

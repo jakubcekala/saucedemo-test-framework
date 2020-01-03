@@ -5,7 +5,7 @@ import errors.LoginErrorTexts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
-import pageobjects.BasePage;
+import pageobjects.LoginPage;
 import pageobjects.MainPage;
 
 public class Tests {
@@ -21,58 +21,58 @@ public class Tests {
 
     @Test
     public void usernameRequiredTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.USERNAME_REQUIRED_ERROR);
-        basePage.enterPassword(Credentials.CORRECT_PASSWORD);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.USERNAME_REQUIRED_ERROR);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.USERNAME_REQUIRED_ERROR);
+        loginPage.enterPassword(Credentials.CORRECT_PASSWORD);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.USERNAME_REQUIRED_ERROR);
     }
 
     @Test
     public void passwordRequiredTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.enterUsername(Credentials.STANDARD_USER);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.PASSWORD_REQUIRED_ERROR);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.enterUsername(Credentials.STANDARD_USER);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.PASSWORD_REQUIRED_ERROR);
     }
 
     @Test
     public void credentialsNotMatchTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.enterUsernameAndPassword(Credentials.NOT_EXISTING_USER, Credentials.INCORRECT_PASSWORD);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.enterUsernameAndPassword(Credentials.NOT_EXISTING_USER, Credentials.INCORRECT_PASSWORD);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
     }
 
     @Test
     public void incorrectPasswordTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.enterUsernameAndPassword(Credentials.STANDARD_USER, Credentials.INCORRECT_PASSWORD);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.enterUsernameAndPassword(Credentials.STANDARD_USER, Credentials.INCORRECT_PASSWORD);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
     }
 
     @Test
     public void incorrectUsernameTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.enterUsernameAndPassword(Credentials.NOT_EXISTING_USER, Credentials.CORRECT_PASSWORD);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.enterUsernameAndPassword(Credentials.NOT_EXISTING_USER, Credentials.CORRECT_PASSWORD);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.CREDENTIALS_NOT_MATCH_ERROR);
     }
 
     @Test
     public void userLockedOutTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.enterUsernameAndPassword(Credentials.LOCKED_OUT_USER, Credentials.CORRECT_PASSWORD);
-        basePage.clickOnLoginButton();
-        basePage.loginErrorIsVisible(LoginErrorTexts.LOCKED_USER_ERROR);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.enterUsernameAndPassword(Credentials.LOCKED_OUT_USER, Credentials.CORRECT_PASSWORD);
+        loginPage.clickOnLoginButton();
+        loginPage.loginErrorIsVisible(LoginErrorTexts.LOCKED_USER_ERROR);
     }
 
     @Test
     public void loginTest() {
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        MainPage mainPage = basePage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
     }
 
     @AfterMethod
