@@ -7,23 +7,23 @@ import xpaths.LoggedInTemplateXPaths;
 
 public abstract class LoggedInTemplate {
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.HAMBURGER_MENU_BUTTON_XPATH)
-    private WebElement hamburgerMenuButton;
+    protected WebElement hamburgerMenuButton;
 
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.SHOPPING_CARD_BUTTON_XPATH)
-    private WebElement shoppingCardButton;
+    protected WebElement shoppingCardButton;
 
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.ALL_ITEMS_BUTTON_XPATH)
-    private WebElement allItemsButton;
+    protected WebElement allItemsButton;
 
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.ABOUT_BUTTON_XPATH)
-    private WebElement aboutButton;
+    protected WebElement aboutButton;
 
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.LOGOUT_BUTTON_XPATH)
-    private WebElement logoutButton;
+    protected WebElement logoutButton;
 
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.RESET_APP_STATE_BUTTON_XPATH)
-    private WebElement resetAppStateButton;
+    protected WebElement resetAppStateButton;
 
     @FindBy(how = How.XPATH, using = LoggedInTemplateXPaths.CLOSE_MENU_BUTTON_XPATH)
-    private WebElement closeMenuButton;
+    protected WebElement closeMenuButton;
 }
