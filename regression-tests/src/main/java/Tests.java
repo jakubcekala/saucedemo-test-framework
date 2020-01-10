@@ -73,6 +73,7 @@ public class Tests {
     public void loginTest() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
+        mainPage.mainTemplateElementsAreDisplayed();
     }
 
     @AfterMethod

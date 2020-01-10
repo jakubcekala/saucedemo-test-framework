@@ -1,4 +1,5 @@
 package pageobjects;
+import managers.AssertionsManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import xpaths.LoginPageXPaths;
 
-public class LoginPage {
+public class LoginPage extends AssertionsManager {
 
     @FindBy(how = How.XPATH, using = LoginPageXPaths.USERNAME_FORM_XPATH)
     private WebElement usernameForm;
@@ -45,7 +46,7 @@ public class LoginPage {
     }
 
     public void loginErrorIsVisible(String errorText) {
-        errorArea.isDisplayed();
+        elementIsDisplayed(errorArea);
         Assert.assertEquals(errorText, errorArea.getText());
     }
 
