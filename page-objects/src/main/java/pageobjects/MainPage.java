@@ -23,8 +23,33 @@ public class MainPage extends LoggedInTemplate {
     ArrayList<Item> productItemsList = new ArrayList<Item>();
 
     public void itemsAreSortedByDefault() {
+        itemsAreSortedByNameAZ();
+    }
+
+    public void itemsAreSortedByNameAZ() {
         for (int index = 0; index < getProductItems().size(); index++) {
             productItems.get(index).findElement(By.id(ItemsOrder.inventoryItemIdAZOrder[index]));
+            index++;
+        }
+    }
+
+    public void itemsAreSortedByNameZA() {
+        for (int index = 0; index < getProductItems().size(); index++) {
+            productItems.get(index).findElement(By.id(ItemsOrder.inventoryItemIdZAOrder[index]));
+            index++;
+        }
+    }
+
+    public void itemsAreSortedByPriceLH() {
+        for (int index = 0; index < getProductItems().size(); index++) {
+            productItems.get(index).findElement(By.id(ItemsOrder.inventoryItemPriceLHOrder[index]));
+            index++;
+        }
+    }
+
+    public void itemsAreSortedByPriceHL() {
+        for (int index = 0; index < getProductItems().size(); index++) {
+            productItems.get(index).findElement(By.id(ItemsOrder.inventoryItemPriceHLOrder[index]));
             index++;
         }
     }
