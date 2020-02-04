@@ -20,7 +20,26 @@ public class MainPage extends LoggedInTemplate {
     @FindBy(how = How.XPATH, using = MainPageXPaths.PRODUCT_ITEMS_XPATH)
     private List<WebElement> productItems;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"inventory_filter_container\"]/select")
+    private Select orderSelect;
+
     ArrayList<Item> productItemsList = new ArrayList<Item>();
+
+    public void setNameAZOrder() {
+        orderSelect.selectByValue("az");
+    }
+
+    public void setNameZAOrder() {
+        orderSelect.selectByValue("za");
+    }
+
+    public void setPriceLHOrder() {
+        orderSelect.selectByValue("lohi");
+    }
+
+    public void setPriceHLOrder() {
+        orderSelect.selectByValue("hilo");
+    }
 
     public void itemsAreSortedByDefault() {
         itemsAreSortedByNameAZ();

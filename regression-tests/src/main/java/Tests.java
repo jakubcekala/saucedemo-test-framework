@@ -77,10 +77,42 @@ public class Tests {
     }
 
     @Test
-    public void test() {
+    public void defaultItemsOrderTest() {
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
         mainPage.itemsAreSortedByDefault();
+    }
+
+    @Test
+    public void nameAZItemsOrderTest() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
+        mainPage.setNameAZOrder();
+        mainPage.itemsAreSortedByNameAZ();
+    }
+
+    @Test
+    public void nameZAItemsOrderTest() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
+        mainPage.setNameZAOrder();
+        mainPage.itemsAreSortedByNameZA();
+    }
+
+    @Test
+    public void priceLHItemsOrderTest() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
+        mainPage.setPriceLHOrder();
+        mainPage.itemsAreSortedByPriceLH();
+    }
+
+    @Test
+    public void priceHLItemsOrderTest() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        MainPage mainPage = loginPage.login(Credentials.STANDARD_USER, Credentials.CORRECT_PASSWORD, driver);
+        mainPage.setPriceHLOrder();
+        mainPage.itemsAreSortedByPriceHL();
     }
 
     @AfterMethod
